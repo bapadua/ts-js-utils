@@ -36,7 +36,7 @@ export class CommonUtils {
     const dateA = new Date(startDate);
     const dateB = new Date(endDate);
 
-    let millisecondsDiff 
+    let millisecondsDiff;
     if (timeZone) {
       const zonedDateA = toZonedTime(dateA, timeZone);
       const zonedDateB = toZonedTime(dateB, timeZone);
