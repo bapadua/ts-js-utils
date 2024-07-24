@@ -32,15 +32,18 @@ export class CommonUtils {
     return `${formattedDate} ${timeZone}`;
   }
 
-  static calculateDateDiff(startDate: string, endDate: string, timeZone: string) {
+   static calculateDateDiff(startDate: string, endDate: string, timeZone?: string) {
     const dateA = new Date(startDate);
     const dateB = new Date(endDate);
 
-
-    const zonedDateA = toZonedTime(dateA, timeZone);
-    const zonedDateB = toZonedTime(dateB, timeZone);
-
-    const millisecondsDiff = Math.abs(zonedDateB.getTime() - zonedDateA.getTime());
+    let millisecondsDiff 
+    if (timeZone) {
+      const zonedDateA = toZonedTime(dateA, timeZone);
+      const zonedDateB = toZonedTime(dateB, timeZone);
+      millisecondsDiff = Math.abs(zonedDateB.getTime() - zonedDateA.getTime());
+    } else {
+      millisecondsDiff = Math.abs(dateB.getTime() - dateA.getTime());
+    }
     const secondsDiff = millisecondsDiff / 1000;
     const minutesDiff = secondsDiff / 60;
     const hoursDiff = minutesDiff / 60;
